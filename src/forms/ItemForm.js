@@ -8,7 +8,7 @@ import { FormControl, FormHelperText, InputLabel, Select, MenuItem } from '@mui/
 
 
 
-let categories=[{id:1,name:"Shirts"},{id:2,name:"Shoes"},{id:3, name:"Hats"}]
+let categories=[{id:1,name:"Goodnight Goodnight"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
 
 //Defining our yup validation
 const FormSchema=Yup.object(

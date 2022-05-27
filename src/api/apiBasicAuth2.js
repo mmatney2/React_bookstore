@@ -1,16 +1,16 @@
 import apiClient from './clientBasicAuth';
 
-const endpoint = '/api/login';
+const endpoint = '/api/register';
 
-export const getUser= async (email, password, cancelToken)=>{
+export const getUser= async (email, password, confirm_password, cancelToken)=>{
     let error;
     let user;
 
-    const response = await apiClient(email, password, cancelToken).get(endpoint);
+    const response = await apiClient(email, password, confirm_password, cancelToken).get(endpoint);
     if (response.ok){
         user = response.data
     }else if (response.status === 401){
-        error="Invalid Email/Password Combo"
+        error="registerInvalid Email/Password Combo"
     }else{
         error = "An Unexpected Error has Occured. Please Try again Later."
     }

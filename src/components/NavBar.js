@@ -22,7 +22,9 @@ import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Switch from '@mui/material/Switch';
 import { LocalGroceryStoreTwoTone, StorefrontTwoTone } from '@mui/icons-material';
+
 
 
 
@@ -137,6 +139,8 @@ export default function MiniDrawer({children}) {
           <Box sx={{mr:3}}>
             <img height='45px' alt="Kiddie Corner Photo" className='p2' src="https://c8.alamy.com/comp/2BKG76X/boy-and-girl-reading-book-logo-2BKG76X.jpg"/>
           </Box>
+          
+          
           <Typography variant="h6" noWrap component="div">
             Kiddie Corner Books
           </Typography>
