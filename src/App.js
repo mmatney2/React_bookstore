@@ -23,7 +23,8 @@ function App() {
       <NavBar>
         <Button color="success" onClick={handleAPITest}>Test API Call</Button>
         <Error style={{backgroundColor:'cornflowerblue'}}>This is an error Message</Error>
-
+        {/* <BasicSwitches/> */}
+        {/* <MultiActionAreaCard/> */}
         <LoginForm/>
       </NavBar>
   );
