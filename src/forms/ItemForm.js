@@ -8,7 +8,7 @@ import { FormControl, FormHelperText, InputLabel, Select, MenuItem } from '@mui/
 
 
 
-let categories=[{id:1,name:"Goodnight Goodnight"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
+let categories=[{id:1,name:"Kids book1"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
 
 //Defining our yup validation
 const FormSchema=Yup.object(
@@ -62,40 +62,40 @@ export default function ItemForm({ item
     return(
         <form onSubmit={formik.handleSubmit}>
             <TextField
-                id="name"
-                name="name"
+                id="title"
+                name="title"
                 fullWidth
                 sx={{mb:2, mt:2}}
-                label="name"
-                placeholder="Name"
-                value={formik.values.name}
+                label="title"
+                placeholder="title"
+                value={formik.values.title}
                 onChange={formik.handleChange}
-                error={formik.touched.name && Boolean(formik.errors.name)}
-                helperText={formik.touched.name && formik.errors.name}            
+                error={formik.touched.title && Boolean(formik.errors.title)}
+                helperText={formik.touched.title && formik.errors.title}            
             />
             <TextField
-                id="desc"
-                name="desc"
+                id="author"
+                name="author"
                 fullWidth
                 sx={{mb:2}}
-                label="desc"
-                placeholder="Description"
-                value={formik.values.desc}
+                label="author"
+                placeholder="author"
+                value={formik.values.author}
                 onChange={formik.handleChange}
-                error={formik.touched.desc && Boolean(formik.errors.desc)}
-                helperText={formik.touched.desc && formik.errors.desc}            
+                error={formik.touched.author && Boolean(formik.errors.author)}
+                helperText={formik.touched.author && formik.errors.author}            
             />
             <TextField
-                id="price"
-                name="price"
+                id="pages"
+                name="pages"
                 fullWidth
                 sx={{mb:2}}
-                label="price"
-                placeholder="Price"
-                value={formik.values.price}
+                label="pages"
+                placeholder="pages"
+                value={formik.values.pages}
                 onChange={formik.handleChange}
-                error={formik.touched.price && Boolean(formik.errors.price)}
-                helperText={formik.touched.price && formik.errors.price}            
+                error={formik.touched.pages && Boolean(formik.errors.pages)}
+                helperText={formik.touched.pages && formik.errors.pages}            
             />
             <TextField
                 id="img"
@@ -108,6 +108,18 @@ export default function ItemForm({ item
                 onChange={formik.handleChange}
                 error={formik.touched.img && Boolean(formik.errors.img)}
                 helperText={formik.touched.img && formik.errors.img}            
+            />
+            <TextField
+                id="summary"
+                name="summary"
+                fullWidth
+                sx={{mb:2}}
+                label="summary"
+                placeholder="summary"
+                value={formik.values.summary}
+                onChange={formik.handleChange}
+                error={formik.touched.summary && Boolean(formik.errors.summary)}
+                helperText={formik.touched.summary && formik.errors.summary}            
             />
             <FormControl fullWidth>
                 <InputLabel id="category-label-id">Category</InputLabel>

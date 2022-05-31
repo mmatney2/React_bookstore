@@ -2,11 +2,11 @@ import apiClient from './clientBasicAuth';
 
 const endpoint = '/api/edit_profile';
 
-export const getUser= async (email, password, confirm_password, cancelToken)=>{
+export const putUser= async (email, password, confirm_password, cancelToken)=>{
     let error;
     let user;
 
-    const response = await apiClient(email, password, confirm_password, cancelToken).get(endpoint);
+    const response = await apiClient(email, password, confirm_password, cancelToken).put(endpoint);
     if (response.ok){
         user = response.data
     }else if (response.status === 401){

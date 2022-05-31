@@ -1,8 +1,8 @@
 import apiClient from './clientBasicAuth';
 
-const endpoint = '/api/register';
+const endpoint = '/api/get_book';
 
-export const getUser= async (email, password, confirm_password, cancelToken)=>{
+export const getBook= async (email, password, confirm_password, cancelToken)=>{
     let error;
     let user;
 
@@ -10,7 +10,7 @@ export const getUser= async (email, password, confirm_password, cancelToken)=>{
     if (response.ok){
         user = response.data
     }else if (response.status === 401){
-        error="registerInvalid Email/Password Combo"
+        error="Invalid Email/Password Combo"
     }else{
         error = "An Unexpected Error has Occured. Please Try again Later."
     }
