@@ -6,30 +6,24 @@ import BasicSwitches from './components/BasicSwitches'
 import {getUser} from './api/login';
 import { CancelToken } from 'apisauce';
 import LoginForm from './forms/LoginForm';
-import {postUser} from './api/register';
+import {postUser} from './api/user';
 import CatForm from './forms/CatForm';
 import ItemForm from './forms/ItemForm';
 import apiCategory from './api/apiCategory';
 import apiItem from './api/apiItem';
-// import {putUser} from './forms/EditProfileForm';
-// import {delUser} from './forms/DelUserForm';
-// import {getBook} from './forms/EditProfileForm';
-// import {postUser} from './forms/RegisterForm';
+import {getAllBooks} from './api/book';
+import {getOneBook} from './api/book';
+import {createUser} from './api/user';
 
 
 
 
-
-const my_token="4djEE-SXm2wX_m__oCmqeR_rvF9oeRixRfe3tnZ0TKw"
+// const my_token="8Qd8cU9Oi44FdJjTwY3_bkI9qwxBBhQo8jWi6je-iqw"
 
 const handleAPITest= async ()=>{
-  const my_token="4djEE-SXm2wX_m__oCmqeR_rvF9oeRixRfe3tnZ0TKw"
-  // const data ={"email" : "marq@mat.com",
-  // "first_name" : "Marquita",
-  // "last_name" : "Matney",
-  // "password" : "123"}
+
   const source = CancelToken.source();
-  const response_object= await getUser(my_token, source.token);
+  const response_object= await createUser();
   console.log(response_object)
 }
 
