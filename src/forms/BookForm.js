@@ -1,56 +1,62 @@
-import React from 'react';
+import {useState} from 'react';
 import * as Yup from "yup";
 import { useFormik } from 'formik';
 import Button from '../components/Button';
 import TextField from '@mui/material/TextField';
 import { FormControl, FormHelperText, InputLabel, Select, MenuItem } from '@mui/material';
+import useBooks from '../hooks/useBooks';
+import { AppContext } from '../context/AppContext';
+import Error from '../components/Error';
+import useCreateBook from '../hooks/useCreateBook';
 
 
 
 
-let categories=[{id:1,name:"Kids book1"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
+let books=[{id:1,name:"Kids book1"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
 
 //Defining our yup validation
 const FormSchema=Yup.object(
     {
-        name:Yup.string().required(),
-        desc:Yup.string().required(),
-        price:Yup.string().matches(/^\d+(\.\d{1,2})?$/, "Must be a Valid Price").required(),
+        title:Yup.string().required(),
+        author:Yup.string().required(),
+        pages:Yup.number().integer().required(),
+        summary:Yup.string().required(),
+        subject:Yup.string().required(),
         img:Yup.string().required(),
-        category_id:Yup.number().integer().required()
     }
+    
 )
 
 
 
-export default function ItemForm({ item 
-    // =    {id:1,
-    //             name:"item1",
-    //             desc:'my test item',
-    //             category_id:3,
-    //             price:9.99,
-    //             img:'my-image.png'}
-}
-                
-                ){
+export default function BookForm({ book }){
+
+    const {books, error} = useBooks()
+
+    const[newBook, setNewBook]=useState({})
+
+    useCreateBook(newBook)
+    
     
     const initialValues={
-        name:item?.name ?? '',
-        desc:item?.desc ?? '',
-        price:item?.price ?? '',
-        img:item?.img ?? '',
-        category_id:item?.category_id??0
+        title:book?.title ?? '',
+        author:book?.author ?? '',
+        pages:book?.pages??0,
+        summary:book?.summary ?? '',
+        subject:book?.subject ?? '',
+        img:book?.img ?? ''
     }
     
     const handleSubmit=(values, resetForm)=>{
-        if (item){
-            console.log('Editing Item')
-        }else{
-            console.log('Creating item')
+        if (book){
+            setNewBook(values)
         }
         console.log(values)
         resetForm(initialValues)
     }
+    // const handleDelete=()=>{
+    //     setDeleteItem(book)
+    // }
 
     const formik = useFormik({
         initialValues:initialValues,
@@ -122,27 +128,28 @@ export default function ItemForm({ item
                 helperText={formik.touched.summary && formik.errors.summary}            
             />
             <FormControl fullWidth>
-                <InputLabel id="category-label-id">Category</InputLabel>
+                <InputLabel id="book-label-id">Books</InputLabel>
                 <Select
-                    labelId="category-label-id"
-                    id="category-id"
-                    value={formik.values.category_id}
-                    name="category_id"
-                    placeholder="Category"
-                    label="Category"
+                    labelId="book-label-id"
+                    id="book-id"
+                    value={formik.values.book_id}
+                    name="book_id"
+                    placeholder="Book"
+                    label="Book"
                     onChange={formik.handleChange}
-                    error={formik.touched.category_id && Boolean(formik.errors.category_id)}
+                    error={formik.touched.book_id && Boolean(formik.errors.book_id)}
                 >
                     <MenuItem value={0}><em>None</em></MenuItem>
 
-                {categories.map((category)=>(
-                    <MenuItem key={category.id} value={category.id}>{category.name} | {category.id}</MenuItem>
+                {books.map((book)=>(
+                    <MenuItem key={book.id} value={book.id}>{book.title} | {book.id}</MenuItem>
                 )
                 )}
                 </Select>
-                <FormHelperText>{formik.touched.category_id && formik.errors.category_id}</FormHelperText>
+                {error}
+                <FormHelperText>{formik.touched.book_id && formik.errors.book_id}</FormHelperText>
             </FormControl>
-            <Button type="submit" sx={{width:"100%"}}>{item?"Edit Item":"Create Item"}</Button>
+            <Button type="submit" sx={{width:"100%"}}>{book?"Edit Book":"Create Book"}</Button>
         </form>
     )
 

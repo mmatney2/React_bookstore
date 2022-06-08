@@ -21,6 +21,6 @@ export const getUser= async (email, password, cancelToken)=>{
 
 }
 
-export default {
-    getUser
-}
+// export default {
+//     getUser
+// }

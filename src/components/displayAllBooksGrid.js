@@ -5,6 +5,12 @@ import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import CartCard from './CartCard';
 import ChangeCartItemQuanitity from './ChangeCartItemQuantity';
+import useBooks from '../hooks/useBooks';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
+import Error from './Error';
+
+// const books=[{id:1, name:"hello"}, {id:2, name:"goodbye"}, {id:3, name:"why"}]
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -14,10 +20,30 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
-export default function CartItem({item}) {
+export default function displayAllBooksGrid({item}) {
+    // const {books, error} = useBooks();
+    const [lookbook, setlookbook] = useState({});
 
+    const {books, error} = useBooks();
     const [qty, setQty]=useState(cart.filter((cartItem)=>cartItem.id===item.id).length)
-  return (
+  
+    if (error){
+      return(
+        <Box sx={{display:"flex"}}>
+        <Error>{error}</Error>
+        </Box>
+      )
+    }
+
+    if(!books){
+      return(
+        <Box sx={{display:"flex"}}>
+          <CircularProgress/>
+        </Box>
+      )
+    }
+
+    return (
       <Grid container spacing={2} sx={{m:1, pr:2, borderRadius:1, alignItems:"stretch"}}>
         <Grid item md={4} sm={6} xs={12}>
           <Item sx={{height:'100%'}}>
@@ -49,29 +75,29 @@ export default function CartItem({item}) {
 }
 
 
-const item1={
-    "id":1,
-    "name":"itema",
-    "desc":"itema is good",
-    "price":2.99,
-    "img":"https://i5.walmartimages.com/asr/0b82849d-00a9-4f3b-b472-c4b8001ba154.d9c5856a2f051f82d511ad61dc6068f9.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
-    "category_id":1
-  }
-  const item2={
-    "id":2,
-    "name":"itemB",
-    "desc":"itemB is good",
-    "price":12.99,
-    "img":"https://play-lh.googleusercontent.com/tSYCIbNjUMwhtXLN8nZUcgGGRECdT1jvF99hN2iYVzkz8c1QPLFVFfh4sxl4_RTmZrnWxLJrPchHFg=w240-h480-rw",
-    "category_id":2
-  }
-  const item3={
-    "id":3,
-    "name":"itemC",
-    "desc":"itemC is good",
-    "price":200.00,
-    "img":"https://images-na.ssl-images-amazon.com/images/I/51BTlRykvfL._SY498_BO1,204,203,200_.jpg",
-    "category_id":1
-  }
+// const item1={
+//     "id":1,
+//     "name":"itema",
+//     "desc":"itema is good",
+//     "price":2.99,
+//     "img":"https://i5.walmartimages.com/asr/0b82849d-00a9-4f3b-b472-c4b8001ba154.d9c5856a2f051f82d511ad61dc6068f9.jpeg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+//     "book_id":1
+//   }
+//   const item2={
+//     "id":2,
+//     "name":"itemB",
+//     "desc":"itemB is good",
+//     "price":12.99,
+//     "img":"https://play-lh.googleusercontent.com/tSYCIbNjUMwhtXLN8nZUcgGGRECdT1jvF99hN2iYVzkz8c1QPLFVFfh4sxl4_RTmZrnWxLJrPchHFg=w240-h480-rw",
+//     "book_id":2
+//   }
+//   const item3={
+//     "id":3,
+//     "name":"itemC",
+//     "desc":"itemC is good",
+//     "price":200.00,
+//     "img":"https://images-na.ssl-images-amazon.com/images/I/51BTlRykvfL._SY498_BO1,204,203,200_.jpg",
+//     "book_id":1
+//   }
   
-  const cart=[item1, item2, item2, item2, item3, item3]
+//   const cart=[item1, item2, item2, item2, item3, item3]

@@ -1,14 +1,14 @@
 import apiClient from './clientNoAuth';
 
-const endpoint = '/api/book';
+const endpoint = '/api/book/<int:id>';
 
-export const getAllBooks= async (data, cancelToken)=>{
+export const getOneBook= async (data, cancelToken)=>{
     let error;
-    let books;
+    let book;
 
     const response = await apiClient(data, cancelToken).get(endpoint);
     if (response.ok){
-        books = response.data
+        book = response.data
     }else if (response.status === 401){
         error="Invalid Email/Password Combo"
     }else{
@@ -16,8 +16,10 @@ export const getAllBooks= async (data, cancelToken)=>{
     }
     return {
         error,
-        books
+        book
     }
 
 }
-
+export default {
+    getOneBook
+}
