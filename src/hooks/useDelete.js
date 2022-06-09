@@ -1,16 +1,18 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
 import {delUser} from '../api/apiUser'; //missing
 import { CancelToken } from 'apisauce';
+import {AppContext} from '../context/AppContext';
 
-export default function useDelete(loginCreds, setLoginCreds, setError, deleteUser) {
+export default function useDelete() {
 //get navigate
+const {user, setUser} = useContext(AppContext)
+
     const del = async (cancelToken)=>{
-        const response = await delUser(loginCreds.email, loginCreds.password,cancelToken)
+        const response = await delUser(user.token, user.id ,cancelToken)
         console.log(response)
         if(response.user?.token){
             console.log('logged in');
-            deleteUser(response.user);
-            setLoginCreds({})
+            setUser({});
             // navigate to the home page
         }
         setError(response.error);
@@ -20,11 +22,11 @@ export default function useDelete(loginCreds, setLoginCreds, setError, deleteUse
     useEffect(
         ()=>{
             const source = CancelToken.source()
-            if (loginCreds.email && loginCreds.password)
+            if (user.token)
             del(source.token)
             return ()=>{source.cancel()}
         },
-        [loginCreds,  setLoginCreds, setError, deleteUser]
+        [user, setUser]
     )
     
 }

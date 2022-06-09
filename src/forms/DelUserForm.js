@@ -25,7 +25,7 @@ const handleSubmit=(values)=>{
 }
 
 
-export default function EditProfileForm(){
+export default function DelUserForm(){
 
     const formik = useFormik({
         initialValues:initialValues,

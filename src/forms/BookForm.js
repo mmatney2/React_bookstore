@@ -9,10 +9,7 @@ import { AppContext } from '../context/AppContext';
 import Error from '../components/Error';
 import useCreateBook from '../hooks/useCreateBook';
 
-
-
-
-let books=[{id:1,name:"Kids book1"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
+// let books=[{id:1,name:"Kids book1"},{id:2,name:"kids book2"},{id:3, name:"kids book 3"}]
 
 //Defining our yup validation
 const FormSchema=Yup.object(
@@ -24,19 +21,12 @@ const FormSchema=Yup.object(
         subject:Yup.string().required(),
         img:Yup.string().required(),
     }
-    
 )
-
-
-
 export default function BookForm({ book }){
 
     const {books, error} = useBooks()
-
     const[newBook, setNewBook]=useState({})
-
     useCreateBook(newBook)
-    
     
     const initialValues={
         title:book?.title ?? '',
@@ -46,7 +36,6 @@ export default function BookForm({ book }){
         subject:book?.subject ?? '',
         img:book?.img ?? ''
     }
-    
     const handleSubmit=(values, resetForm)=>{
         if (book){
             setNewBook(values)

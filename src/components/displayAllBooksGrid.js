@@ -1,14 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
 import Avatar from '@mui/material/Avatar';
 import CartCard from './CartCard';
-import ChangeCartItemQuanitity from './ChangeCartItemQuantity';
 import useBooks from '../hooks/useBooks';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 import Error from './Error';
+import {AppContext} from './context/AppContext';
 
 // const books=[{id:1, name:"hello"}, {id:2, name:"goodbye"}, {id:3, name:"why"}]
 
@@ -21,7 +21,7 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function displayAllBooksGrid({item}) {
-    // const {books, error} = useBooks();
+  const {currentGrid, setGrid} = useContext(AppContext);
     const [lookbook, setlookbook] = useState({});
 
     const {books, error} = useBooks();

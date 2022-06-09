@@ -7,21 +7,19 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import primaryTheme from './themes/primaryTheme';
 import AppContextProvider from './context/AppContext';
-import ListOfBooksInStore from './context/ListOfBooksInStore';
+import DisplayAllBooksGrid1 from './context/AppContext';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <DisplayAllBooksGrid1>
     <ThemeProvider theme={primaryTheme}>
-    <AppContextProvider>
-    {/* <ListOfBooksInStore> */}
       <CssBaseline/>
-      <App />
-      {/* </ListOfBooksInStore> */}
-      </AppContextProvider>
+      <App />      
     </ThemeProvider>
+    </DisplayAllBooksGrid1>
   </React.StrictMode>
 );
 

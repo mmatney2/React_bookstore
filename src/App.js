@@ -21,7 +21,6 @@ import EditProfileForm from './forms/EditProfileForm';
 
 
 
-
 // const my_token="8Qd8cU9Oi44FdJjTwY3_bkI9qwxBBhQo8jWi6je-iqw"
 
 const handleAPITest= async ()=>{
@@ -42,8 +41,8 @@ function App() {
         <LoginForm/>
         {/* <DisplayAllBooksGrid/>
         <AdminMenu/> */}
-        <RegisterForm/>
-        <EditProfileForm/>
+        {/* <RegisterForm/>
+        <EditProfileForm/> */}
         {/* <EditProfileForm/>
         <DelUserForm/>
         <ItemForm/>

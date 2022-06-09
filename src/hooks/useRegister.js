@@ -1,14 +1,12 @@
-import React, {useEffect, useContext} from 'react'
-import {putUser} from '../api/apiUser'; 
+import React, {useEffect} from 'react'
+import {postUser} from '../api/user';
 import { CancelToken } from 'apisauce';
 import {AppContext} from '../context/AppContext';
 
-export default function useEdit(loginCreds, setLoginCreds, setError) {
+export default function useRegister(loginCreds, setLoginCreds, setError, setUser) {
 //get navigate
-const {setUser} = useContext(AppContext)
-
-    const put = async (cancelToken)=>{
-        const response = await putUser(loginCreds.email, loginCreds.password,cancelToken)
+    const register = async (cancelToken, loginCreds)=>{
+        const response = await postUser(loginCreds.email, loginCreds.password,cancelToken)
         console.log(response)
         if(response.user?.token){
             console.log('logged in');
@@ -24,7 +22,7 @@ const {setUser} = useContext(AppContext)
         ()=>{
             const source = CancelToken.source()
             if (loginCreds.email && loginCreds.password)
-            put(source.token)
+            register(source.token, loginCreds)
             return ()=>{source.cancel()}
         },
         [loginCreds,  setLoginCreds, setError, setUser]

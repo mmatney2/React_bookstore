@@ -47,6 +47,7 @@ export const postUser = async (data, cancelToken) => {
     }
 
 }
+let token= "BFGYQt6rczpS6bfsqu1GFVZw1aDZzwN4pe2bEXYzyfE"
 export const putUser = async (token, id, data, cancelToken) => {
     let error;
     let user;
