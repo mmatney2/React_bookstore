@@ -23,6 +23,7 @@ const FormSchema=Yup.object(
     }
 )
 export default function BookForm({ book }){
+    const {setUser} = useContext(AppContext);
 
     const {books, error} = useBooks()
     const[newBook, setNewBook]=useState({})

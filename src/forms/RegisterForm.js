@@ -25,8 +25,9 @@ const initialValues={
 
 
 export default function RegisterForm(){
+    const {setUser} = useContext(AppContext);
 
-    
+
 
 
     const handleSubmit=(values)=>{

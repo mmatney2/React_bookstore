@@ -27,6 +27,7 @@ const handleSubmit=(values)=>{
 
 
 export default function EditProfileForm(){
+    const {setUser} = useContext(AppContext);
 
     const formik = useFormik({
         initialValues:initialValues,

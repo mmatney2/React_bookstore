@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -24,7 +24,9 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Switch from '@mui/material/Switch';
 import { LocalGroceryStoreTwoTone, StorefrontTwoTone } from '@mui/icons-material';
-
+import { AppContext } from '../context/AppContext';
+import getRandomInt from '../helpers'
+import Badge from '@mui/material/Badge';
 
 
 
@@ -99,6 +101,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer({children}) {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const {user, cart} = useContext(AppContext)
 
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -147,7 +150,7 @@ export default function MiniDrawer({children}) {
         <Box sx={{ flexGrow: 0,  }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <Avatar alt={user?.name ?? "Please Login"} src={user?.icon ? `https://avatars.dicebear.com/api/avataaars/${user.icon}.svg`:`https://avatars.dicebear.com/api/avataaars/${getRandomInt(0,1000)}.svg`}/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -188,7 +191,7 @@ export default function MiniDrawer({children}) {
         <Divider />
         <List>
           {
-            [{label:'Cart',path:'', icon:<LocalGroceryStoreTwoTone style={{color:'white'}}/>},
+            [{label:'Cart',path:'', icon:<Badge badgeContent={cart?.length} color='primary'><LocalGroceryStoreTwoTone style={{color:'white'}}/></Badge>},
             {label:'Store',path:'', icon:<StorefrontTwoTone style={{color:'white'}}/>}
           ].map((navItem, index) => (
             <ListItem key={navItem.label} disablePadding sx={{ display: 'block' }}>
