@@ -13,7 +13,7 @@ import {getAllBooks} from './api/apiBook';
 import {getOneBook} from './api/apiBook';
 import {createUser} from './api/user';
 import RegisterForm from './forms/RegisterForm';
-// import DisplayAllBooksGrid from './components/DisplayAllBooksGrid'
+import DisplayAllBooksGrid from './components/DisplayAllBooksGrid'
 // import AdminMenu from './components/AdminMenu'
 import {putUser} from './api/apiUser';
 import EditProfileForm from './forms/EditProfileForm';
@@ -39,8 +39,7 @@ function App() {
         <BasicSwitches></BasicSwitches>
         {/* <BookForm/> */}
         <LoginForm/>
-        {/* <DisplayAllBooksGrid/>
-        <AdminMenu/> */}
+        <DisplayAllBooksGrid/>
         {/* <RegisterForm/>
         <EditProfileForm/> */}
         {/* <EditProfileForm/>

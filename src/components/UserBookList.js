@@ -12,7 +12,7 @@ import Error  from './Error';
 import { AppContext } from '../context/AppContext';
 // import {useNavigate} from 'react-router-dom';
 
-export default function DisplayAllBooksGrid({category_id}) {
+export default function BookBrowser({category_id}) {
   const {error, books} = useBooks(category_id)
 
   const {addToCart, setAlert} = useContext(AppContext)
@@ -21,7 +21,6 @@ export default function DisplayAllBooksGrid({category_id}) {
     addToCart(book)
     setAlert(`You have added ${book.title} to your Cart`)
   }
-
   if (error){
     return (
       <Box sx={{display:"flex"}}>
@@ -29,7 +28,6 @@ export default function DisplayAllBooksGrid({category_id}) {
       </Box>
     )
   }
-
   if(!books){
     return(
     <Box sx={{display:"flex"}}>
@@ -37,9 +35,6 @@ export default function DisplayAllBooksGrid({category_id}) {
     </Box>
     )
   }
-
-
-
   return (
     <ImageList cols={3}>
 
