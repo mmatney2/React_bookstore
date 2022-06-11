@@ -7,19 +7,24 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import primaryTheme from './themes/primaryTheme';
 import AppContextProvider from './context/AppContext';
-import DisplayAllBooksGrid1 from './context/AppContext';
+import DisplayAllBooksGrid from './components/DisplayAllBooksGrid';
+import {BrowserRouter} from 'react-router-dom';
 
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <DisplayAllBooksGrid1>
+    <BrowserRouter>
+    <DisplayAllBooksGrid>
     <ThemeProvider theme={primaryTheme}>
+      <AppContextProvider>
       <CssBaseline/>
-      <App />      
+      <App />     
+      </AppContextProvider> 
     </ThemeProvider>
-    </DisplayAllBooksGrid1>
+    </DisplayAllBooksGrid>
+  </BrowserRouter>
   </React.StrictMode>
 );
 

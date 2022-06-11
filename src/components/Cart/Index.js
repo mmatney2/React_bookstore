@@ -1,7 +1,6 @@
 import React, { useContext } from 'react'
 import Box from '@mui/material/Box'
 import CartItem from './CartItem'
-import CheckoutBar from './CheckoutBar'
 import { AppContext } from '../../context/AppContext'
 
 export default function Index() {
@@ -16,7 +15,6 @@ export default function Index() {
                     )
                 }
             </Box>
-            <CheckoutBar/>
         </>
         )
   }

@@ -27,7 +27,7 @@ import { LocalGroceryStoreTwoTone, StorefrontTwoTone } from '@mui/icons-material
 import { AppContext } from '../context/AppContext';
 import getRandomInt from '../helpers'
 import Badge from '@mui/material/Badge';
-
+import {Link} from 'react-router-dom';
 
 
 
@@ -140,7 +140,9 @@ export default function MiniDrawer({children}) {
             <MenuIcon />
           </IconButton>
           <Box sx={{mr:3}}>
+            <Link to='/'>
             <img height='45px' alt="Kiddie Corner Photo" className='p2' src="https://c8.alamy.com/comp/2BKG76X/boy-and-girl-reading-book-logo-2BKG76X.jpg"/>
+          </Link>
           </Box>
           
           
@@ -169,13 +171,23 @@ export default function MiniDrawer({children}) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-
+              {user?
                 <MenuItem onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">
+                    <Link to='logout' style={{textDecoraation:'none', color:'black'}}>
                   Logout
+                  </Link>
                   </Typography>
                 </MenuItem>
-  
+                :
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Typography textAlign="center">
+                    <Link to='login' style={{textDecoraation:'none', color:'black'}}>
+                  Login
+                  </Link>
+                  </Typography>
+                </MenuItem>
+              }
             </Menu>
           </Box>
         </Toolbar>
@@ -191,17 +203,11 @@ export default function MiniDrawer({children}) {
         <Divider />
         <List>
           {
-            [{label:'Cart',path:'', icon:<Badge badgeContent={cart?.length} color='primary'><LocalGroceryStoreTwoTone style={{color:'white'}}/></Badge>},
-            {label:'Store',path:'', icon:<StorefrontTwoTone style={{color:'white'}}/>}
+            [{label:'Cart',path:'cart', icon:<Badge badgeContent={cart?.length} color='primary'><LocalGroceryStoreTwoTone style={{color:'white'}}/></Badge>},
+            {label:'Bookstore',path:'', icon:<StorefrontTwoTone style={{color:'white'}}/>}
           ].map((navItem, index) => (
-            <ListItem key={navItem.label} disablePadding sx={{ display: 'block' }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
-                }}
-              >
+            <ListItem key={navItem.label} disablePadding sx={{ display: 'block', ml:2, mb:2}}>
+              <Link to={navItem.path} style={{display:"flex", color:"inherit", textDecoration:'none'}}>
                 <ListItemIcon
                   sx={{
                     minWidth: 0,
@@ -212,7 +218,7 @@ export default function MiniDrawer({children}) {
                     {navItem.icon}
                 </ListItemIcon>
                 <ListItemText primary={navItem.label} sx={{ opacity: open ? 1 : 0 }} />
-              </ListItemButton>
+              </Link>
             </ListItem>
           ))}
         </List>

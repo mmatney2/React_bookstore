@@ -10,13 +10,13 @@ import CircularProgress  from '@mui/material/CircularProgress';
 import Box  from '@mui/material/Box';
 import Error  from './Error';
 import { AppContext } from '../context/AppContext';
-// import {useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
-export default function DisplayAllBooksGrid({category_id}) {
-  const {error, books} = useBooks(category_id)
+export default function DisplayAllBooksGrid({id}) {
+  const {error, books} = useBooks(id)
 
-  const {addToCart, setAlert} = useContext(AppContext)
-  // const navigate = useNavigate()
+  const {addToCart} = useContext(AppContext)
+  const navigate = useNavigate()
   const handleAddToCart=(book)=>{
     addToCart(book)
     setAlert(`You have added ${book.title} to your Cart`)
@@ -58,7 +58,7 @@ export default function DisplayAllBooksGrid({category_id}) {
               <IconButton
                 sx={{ color: 'rgba(255, 255, 255, 0.54)' }}
                 aria-label={`info about ${book.title}`}
-                // onClick={()=>navigate('/shop/'+book.id)}
+                onClick={()=>navigate('/shop/'+book.id)}
               >
                 <InfoIcon />
               </IconButton>

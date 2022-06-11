@@ -17,36 +17,46 @@ import DisplayAllBooksGrid from './components/DisplayAllBooksGrid'
 // import AdminMenu from './components/AdminMenu'
 import {putUser} from './api/apiUser';
 import EditProfileForm from './forms/EditProfileForm';
+import Box from '@mui/material/Box';
+import {Route, Routes} from 'react-router-dom'
+import Login from './views/Login';
+import CartPage from './views/CartPage';
+import Register from './views/Register';
+import Edit from './views/Edit';
+import SingleBook from './views/SingleBook';
+import {AppContext} from './context/AppContext';
+import {useContext} from 'react';
+import Logout from './views/Logout';
 
 
 
 
-// const my_token="8Qd8cU9Oi44FdJjTwY3_bkI9qwxBBhQo8jWi6je-iqw"
-
-const handleAPITest= async ()=>{
-  
-  const source = CancelToken.source();
-  const data = {email: "marquita.matney@gmail.com",password:"123"}
-  const response_object= await putUser( data, source.token);
-  console.log(response_object)
-}
+const HomePage=()=>{return(<h1>Welcome to the Bookstore!</h1>)}
 
 function App() {
+  const {user}= useContext(AppContext)
+
   return (
+    <>
       <NavBar>
-        <Button color="success" onClick={handleAPITest}>Test API Call</Button>
-        <Error style={{backgroundColor:'cornflowerblue'}}>This is an error Message</Error>
-        <BasicSwitches></BasicSwitches>
-        {/* <BookForm/> */}
-        <LoginForm/>
-        <DisplayAllBooksGrid/>
-        {/* <RegisterForm/>
-        <EditProfileForm/> */}
-        {/* <EditProfileForm/>
-        <DelUserForm/>
-        <ItemForm/>
-        <CatForm/> */}
+        <Box sx={{minHeight: '90vh'}}>
+        <Routes>
+          <Route path="/" element={<HomePage/>}/>
+          <Route path="/cart" element={<CartPage/>}/>
+          <Route path="/shop" element={<DisplayAllBooksGrid/>}/>
+          <Route path="/login" element={<Login/>}/>
+          <Route path="/Register" element={<Register/>}/>
+          <Route path="/Edit" element={<Edit/>}/>
+          <Route path="/shop/:id" element={<SingleBook/>}/>
+          <Route path="/logout" element={<Logout/>}/>
+
+
+
+
+        </Routes>
+        </Box>
       </NavBar>
+      </>
   );
 }
 

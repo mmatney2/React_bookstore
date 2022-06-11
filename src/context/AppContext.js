@@ -1,8 +1,5 @@
-import {createContext, useEffect, useState} from "react";
+import {createContext, useEffect, useReducer, useState} from "react";
 import {shopReducer, cartActions} from '../reducers/shopReducer';
-
-
-
 
 
 export const AppContext = createContext();
@@ -21,14 +18,13 @@ const AppContextProvider=({children})=>{
             return JSON.parse(cart)
         }
     }
-    const [user, _setUser] = useState(getUserFromLS())
+    const [user, _setUser] = useState(getUserFromLS()??{})
     const [alert, setAlert] = useState({})
     const [cart, dispatch] = useReducer(shopReducer, getCartFromLS()??[])
 
 
         useEffect(
             ()=>{
-                if (cart?.length>0)
                 localStorage.setItem('cart', JSON.stringify(cart))
             },[cart]
         )
