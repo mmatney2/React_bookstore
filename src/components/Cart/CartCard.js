@@ -12,13 +12,13 @@ export default function CartCard({book}) {
     <Card sx={{height:"100%"}}>
       <CardContent>
         <Typography variant="h6" gutterBottom>
-          {book.title}
+          Title: {book.title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {book.desc.slice(0,20)}
+          {/* {book.desc.slice(0,20)} */}
         </Typography>
         <Typography variant="h6" color="text.secondary">
-          ${book.price?.toFixed(2)}
+          {book.pages} pages
         </Typography>
         
       </CardContent>

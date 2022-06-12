@@ -28,6 +28,7 @@ import { AppContext } from '../context/AppContext';
 import getRandomInt from '../helpers'
 import Badge from '@mui/material/Badge';
 import {Link} from 'react-router-dom';
+import RegLink from '@mui/material/Link';
 
 
 
@@ -204,7 +205,7 @@ export default function MiniDrawer({children}) {
         <List>
           {
             [{label:'Cart',path:'cart', icon:<Badge badgeContent={cart?.length} color='primary'><LocalGroceryStoreTwoTone style={{color:'white'}}/></Badge>},
-            {label:'Bookstore',path:'', icon:<StorefrontTwoTone style={{color:'white'}}/>}
+            {label:'Bookstore',path:'shop', icon:<StorefrontTwoTone style={{color:'white'}}/>}
           ].map((navItem, index) => (
             <ListItem key={navItem.label} disablePadding sx={{ display: 'block', ml:2, mb:2}}>
               <Link to={navItem.path} style={{display:"flex", color:"inherit", textDecoration:'none'}}>

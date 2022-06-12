@@ -1,6 +1,6 @@
 import apiClient from './clientNoAuth';
 
-const endpoint = '/api/book/<int:id>';
+const endpoint = '/book/<int:id>';
 
 export const getOneBook= async (data, cancelToken)=>{
     let error;

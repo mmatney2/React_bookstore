@@ -2,7 +2,7 @@ import apiClientNoAuth from './clientNoAuth'
 import apiClientTokenAuth from './clientTokenAuth'
 import apiClient from './clientBasicAuth';
 
-const endpoint= '/api/user'
+const endpoint= '/user'
 
 
 
