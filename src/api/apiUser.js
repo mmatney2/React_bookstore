@@ -4,31 +4,7 @@ import apiClient from './clientBasicAuth';
 
 const endpoint= '/user'
 
-
-
-// const post = async (data, cancelToken) => {
-//     const response = await apiClientNoAuth(cancelToken).post(endpoint, data)
-//     return response.ok
-// }
-
-// const put = async (token, id, data, cancelToken)=>{
-//     const response = await apiClientTokenAuth(token, cancelToken).put(endpoint+'/'+id, data)
-//     return response.ok
-// }
-
-// const del = async(token, id, cancelToken)=>{
-//     const response = await apiClientTokenAuth(token, cancelToken).delete(endpoint+'/'+id)
-//     return response.ok
-// }
-
-// export default {
-//     // get,
-//     post,
-//     put,
-//     del
-// }
-
-export const postUser = async (data, cancelToken) => {
+export const post = async (data, cancelToken) => {
     let error;
     let user;
 
@@ -47,8 +23,8 @@ export const postUser = async (data, cancelToken) => {
     }
 
 }
-let token= "BFGYQt6rczpS6bfsqu1GFVZw1aDZzwN4pe2bEXYzyfE"
-export const putUser = async (token, id, data, cancelToken) => {
+// let token= "BFGYQt6rczpS6bfsqu1GFVZw1aDZzwN4pe2bEXYzyfE"
+export const put = async (token, id, data, cancelToken) => {
     let error;
     let user;
 
@@ -67,7 +43,7 @@ export const putUser = async (token, id, data, cancelToken) => {
     }
 
 }
-export const delUser = async (token, id, cancelToken) => {
+export const del = async (token, id, cancelToken) => {
     let error;
     let user;
 
@@ -86,3 +62,9 @@ export const delUser = async (token, id, cancelToken) => {
     }
 
 }
+// const apiClient = {
+//     del,
+//     put,
+//     post,
+// }
+// export default apiClient

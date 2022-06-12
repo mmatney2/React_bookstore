@@ -9,7 +9,7 @@ export default function Register() {
   return (
       <Paper sx={{m:5, p:5, justifyContent:"center", backgroundColor: theme.palette.background.paper, backgroundImage:theme.palette.background.paper}}>
         <Typography variant="h4">Register</Typography>
-        <LoginForm/>
+        <RegisterForm/>
       </Paper>
   )
 }

@@ -1,5 +1,5 @@
 import React, {useEffect, useContext} from 'react'
-import {putUser} from '../api/apiUser'; 
+import {put} from '../api/apiUser'; 
 import { CancelToken } from 'apisauce';
 import {AppContext} from '../context/AppContext';
 
@@ -8,7 +8,7 @@ export default function useEdit(loginCreds, setLoginCreds, setError) {
 const {setUser} = useContext(AppContext)
 
     const put = async (cancelToken)=>{
-        const response = await putUser(loginCreds.email, loginCreds.password,cancelToken)
+        const response = await put(loginCreds.email, loginCreds.password,cancelToken)
         console.log(response)
         if(response.user?.token){
             console.log('logged in');

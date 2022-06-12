@@ -19,7 +19,7 @@ import apiClient from './clientNoAuth';
 
 const endpoint = '/user';
 
-export const postUser= async (data, cancelToken)=>{
+export const post= async (data, cancelToken)=>{
     let error;
     let user;
 

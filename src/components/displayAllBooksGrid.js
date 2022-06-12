@@ -58,7 +58,8 @@ export default function DisplayAllBooksGrid({ id }) {
                 <IconButton
                   sx={{ color: "rgba(255, 255, 255, 0.54)" }}
                   aria-label={`info about ${book.title}`}
-                  onClick={() => navigate("/shop/" + book.id)}
+                  onClick={() => navigate("/singlebook/" + book.id)}
+              
                 >
                   <InfoIcon />
                 </IconButton>

@@ -7,7 +7,6 @@ import { getUser } from "./api/apiBasicAuth";
 import { CancelToken } from "apisauce";
 import LoginForm from "./forms/LoginForm";
 import { postUser } from "./api/user";
-import BookForm from "./forms/BookForm";
 import apiCategory from "./api/apiUser";
 import { getAllBooks } from "./api/apiBook";
 import { getOneBook } from "./api/apiBook";
@@ -32,7 +31,7 @@ const HomePage = () => {
 };
 
 function App() {
-  const { user } = useContext(AppContext);
+  // const { user, book, cart } = useContext(AppContext);
 
   return (
     <>
@@ -45,7 +44,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/edit" element={<Edit />} />
-            <Route path="/shop/:id" element={<SingleBook />} />
+            <Route path="/singlebook/:id" element={<SingleBook />} />
             <Route path="/logout" element={<Logout />} />
           </Routes>
         </Box>

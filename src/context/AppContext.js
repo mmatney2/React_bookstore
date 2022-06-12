@@ -16,9 +16,16 @@ const AppContextProvider = ({ children }) => {
       return JSON.parse(cart);
     }
   };
+  const getBookFromLS = () => {
+    let book = localStorage.getItem("book");
+    if (book) {
+      return JSON.parse(book);
+    }
+  };
   const [user, _setUser] = useState(getUserFromLS() ?? {});
   const [alert, setAlert] = useState({});
   const [cart, dispatch] = useReducer(shopReducer, getCartFromLS() ?? []);
+  const [book, _setBook] = useState(getBookFromLS() ?? {});
 
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
@@ -27,8 +34,14 @@ const AppContextProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(user));
     _setUser(user);
   };
+  const setBook = (book) => {
+    localStorage.setItem("book", JSON.stringify(book));
+    _setBook(book);
+  };
 
   const values = {
+    book,
+    setBook,
     alert,
     setAlert,
     user,
@@ -54,36 +67,3 @@ const AppContextProvider = ({ children }) => {
 };
 
 export default AppContextProvider;
-
-// import {createContext, useState} from "react";
-// // import LoginForm from './forms/LoginForm';
-
-// export const AppContext = createContext({
-//     currentGrid: '',
-//     setGrid: null
-// });
-
-// const DisplayAllBooksGrid1 = ({children})=>{
-//     const currentGrid = localStorage.getItem('appBook') || ''
-//     const [bookTitle, _setBookTitle] = useState(currentGrid)
-//     const grid = getGrid(bookTitle)
-
-//     const setBookTitle = (title)=>{
-//         localStorage.setItem('appBook', title)
-//         _setBookTitle(title)
-//     }
-
-//     const values = {
-//         currentGrid: bookTitle,
-//         setGrid: setBookTitle
-//     }
-
-//     return{
-//         <AppContext.Provider value={values}>
-//             {children}
-//         </AppContext.Provider>
-//     }
-
-// }
-
-// export default DisplayAllBooksGrid1
