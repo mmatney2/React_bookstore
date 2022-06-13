@@ -6,7 +6,7 @@ import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import Avatar from "@mui/material/Avatar";
 import { useParams } from "react-router-dom";
-import useBooks from "../hooks/useBooks";
+import useBook from "../hooks/useBook";
 import Error from "./Error";
 import { CircularProgress } from "@mui/material";
 
@@ -20,7 +20,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function BookDisplayCard() {
   const { bookID } = useParams();
-  const { book, error } = useBooks(bookID);
+  const { book, error } = useBook(bookID);
 
   if (error) {
     return (
